@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Search } from "lucide-react"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -11,7 +10,6 @@ export default function Header() {
     <header className="py-6 px-4 md:px-10 border-b border-gray-200">
       <div className="flex items-center justify-between">
         <Link href="/" className="flex items-center">
-          {/* Changed from font-recoleta to font-serif for better fallback */}
           <span className="font-serif text-3xl text-primary tracking-wide">Vesta</span>
         </Link>
 
@@ -22,15 +20,9 @@ export default function Header() {
           <Link href="/for-partners" className="nav-link">
             For Partners
           </Link>
-          <Link href="/resources" className="nav-link">
-            Resources
-          </Link>
           <Link href="/about-us" className="nav-link">
-            About Us
+            Meet Us
           </Link>
-          <button aria-label="Search" className="ml-2">
-            <Search size={20} />
-          </button>
         </nav>
 
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
@@ -48,11 +40,8 @@ export default function Header() {
             <Link href="/for-partners" className="nav-link">
               For Partners
             </Link>
-            <Link href="/resources" className="nav-link">
-              Resources
-            </Link>
             <Link href="/about-us" className="nav-link">
-              About Us
+              Meet Us
             </Link>
           </nav>
         </div>

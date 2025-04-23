@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} font-sans min-h-screen flex flex-col`}>
         <Header />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow flex flex-col">{children}</main>
         <Footer />
         <CookieBanner />
       </body>

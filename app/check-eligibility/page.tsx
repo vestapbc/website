@@ -22,29 +22,30 @@ export default function CheckEligibilityPage() {
   return (
     <div className="min-h-screen py-12 px-4 md:px-10">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-playfair text-center mb-8">Check Your ITIN Eligibility</h1>
-        <p className="text-center mb-12">Answer a few simple questions to determine if you're eligible for an ITIN.</p>
+        <h1 className="text-4xl md:text-5xl font-playfair text-center mb-8">Do I Need A Special Tax Number?</h1>
+        <p className="text-center mb-12">
+          Let's answer a few easy questions to see if you need what's called an "ITIN"!
+        </p>
 
         <div className="bg-white border border-gray-200 rounded-sm p-8">
           {step === 1 && (
             <div>
-              <h2 className="text-2xl font-playfair mb-6">Do you have a Social Security Number (SSN)?</h2>
+              <h2 className="text-2xl font-playfair mb-6">Do you have a Social Security card?</h2>
               <p className="text-sm mb-8">
-                If you have a valid Social Security Number, you don't need an ITIN. ITINs are for individuals who are
-                not eligible for a Social Security Number.
+                This is a card with nine numbers that many people in America use for work and taxes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => handleAnswer("hasSSN", true)}
                   className="bg-white border border-gray-300 hover:bg-gray-50 px-6 py-3 rounded-sm text-sm transition-colors flex-1"
                 >
-                  Yes, I have an SSN
+                  Yes, I have one
                 </button>
                 <button
                   onClick={() => handleAnswer("hasSSN", false)}
                   className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-sm text-sm transition-colors flex-1"
                 >
-                  No, I don't have an SSN
+                  No, I don't have one
                 </button>
               </div>
             </div>
@@ -53,24 +54,23 @@ export default function CheckEligibilityPage() {
           {step === 2 && (
             <div>
               <h2 className="text-2xl font-playfair mb-6">
-                Do you need to file a U.S. tax return or have U.S. income?
+                Do you need to file taxes in America or get paid in America?
               </h2>
               <p className="text-sm mb-8">
-                ITINs are primarily for individuals who need to file U.S. tax returns or have U.S. source income that
-                requires tax reporting.
+                This means you earn money in the United States and might need to tell the government about it.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => handleAnswer("needsToFile", true)}
                   className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-sm text-sm transition-colors flex-1"
                 >
-                  Yes, I need to file taxes
+                  Yes, I do
                 </button>
                 <button
                   onClick={() => handleAnswer("needsToFile", false)}
                   className="bg-white border border-gray-300 hover:bg-gray-50 px-6 py-3 rounded-sm text-sm transition-colors flex-1"
                 >
-                  No, I don't need to file
+                  No, I don't
                 </button>
               </div>
             </div>
@@ -78,23 +78,22 @@ export default function CheckEligibilityPage() {
 
           {step === 3 && (
             <div>
-              <h2 className="text-2xl font-playfair mb-6">Do you have a valid identification document?</h2>
+              <h2 className="text-2xl font-playfair mb-6">Do you have an ID card or passport?</h2>
               <p className="text-sm mb-8">
-                To apply for an ITIN, you need a valid passport or other government-issued ID that verifies your
-                identity and foreign status.
+                This is a special card or booklet with your picture that shows who you are.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => handleAnswer("hasValidID", true)}
                   className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-sm text-sm transition-colors flex-1"
                 >
-                  Yes, I have valid ID
+                  Yes, I have one
                 </button>
                 <button
                   onClick={() => handleAnswer("hasValidID", false)}
                   className="bg-white border border-gray-300 hover:bg-gray-50 px-6 py-3 rounded-sm text-sm transition-colors flex-1"
                 >
-                  No, I don't have valid ID
+                  No, I don't have one
                 </button>
               </div>
             </div>
@@ -109,16 +108,16 @@ export default function CheckEligibilityPage() {
                       <CheckCircle className="text-green-600" size={32} />
                     </div>
                   </div>
-                  <h2 className="text-2xl font-playfair mb-4">You're Eligible for an ITIN!</h2>
+                  <h2 className="text-2xl font-playfair mb-4">Yes! You Need A Special Tax Number!</h2>
                   <p className="text-sm mb-8">
-                    Based on your answers, you're eligible to apply for an Individual Taxpayer Identification Number.
-                    Let's get started with your application.
+                    Based on your answers, you would benefit from having an ITIN (that's the special tax number we help
+                    with). We can help you get one!
                   </p>
                   <Link
-                    href="/itin-application"
+                    href="/itin-services"
                     className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-sm text-sm uppercase tracking-wider transition-colors inline-flex items-center"
                   >
-                    Start Your Application <ArrowRight size={16} className="ml-2" />
+                    Learn How We Can Help <ArrowRight size={16} className="ml-2" />
                   </Link>
                 </div>
               ) : (
@@ -128,16 +127,16 @@ export default function CheckEligibilityPage() {
                       <AlertCircle className="text-amber-600" size={32} />
                     </div>
                   </div>
-                  <h2 className="text-2xl font-playfair mb-4">Additional Information Needed</h2>
+                  <h2 className="text-2xl font-playfair mb-4">We Need To Talk More!</h2>
                   <p className="text-sm mb-8">
-                    Based on your answers, we need more information to determine your eligibility. Please schedule a
-                    call with one of our ITIN specialists for personalized assistance.
+                    Based on your answers, we need to chat a bit more to see if you need a special tax number. Our
+                    friendly helpers would love to talk with you!
                   </p>
                   <Link
-                    href="https://calendly.com/darren-mms/30-minute-itin?month=2025-03"
+                    href="/contact"
                     className="bg-black hover:bg-black-soft text-white px-6 py-3 rounded-sm text-sm uppercase tracking-wider transition-colors inline-block"
                   >
-                    Schedule a Call
+                    Talk To A Friendly Helper
                   </Link>
                 </div>
               )}
@@ -149,7 +148,7 @@ export default function CheckEligibilityPage() {
             <div className="mt-8">
               <div className="flex justify-between mb-2">
                 <span className="text-xs">Start</span>
-                <span className="text-xs">Complete</span>
+                <span className="text-xs">Finish</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div className="bg-primary h-2 rounded-full" style={{ width: `${(step / 3) * 100}%` }}></div>
