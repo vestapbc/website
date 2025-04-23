@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Sergio Trendy";
+  src: url("/fonts/sergio-trendy.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+  --primary-rgb: 44, 175, 125;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sergio;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply uppercase text-xs tracking-wider font-medium hover:text-primary transition-colors;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-sergio font-normal mb-12;
+  }
+
+  .card {
+    @apply relative overflow-hidden border border-gray-200;
+  }
+
+  .card-tag {
+    @apply absolute top-4 left-4 bg-black text-white text-xs uppercase tracking-wider py-1 px-3 rounded-full;
+  }
+
+  .read-link {
+    @apply absolute top-4 right-4 text-xs uppercase tracking-wider;
+  }
+}
+
