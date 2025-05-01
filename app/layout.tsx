@@ -1,39 +1,37 @@
 import type React from "react"
-import type { Metadata } from "next"
+import "@/app/globals.css"
 import { Inter } from "next/font/google"
-import "./globals.css"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import CookieBanner from "@/components/cookie-banner"
+import { ThemeProvider } from "@/components/theme-provider"
+import { StickyCta } from "@/components/sticky-cta"
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 })
 
-// Remove the local font that's causing the error
-// Instead, we'll use the font-family from CSS
-
-export const metadata: Metadata = {
-  title: "VESTA",
-  description: "We help the daring build legendary companies.",
+export const metadata = {
+  title: "Vesta - ITIN Services Platform for Organizations | Beta",
+  description:
+    "Partner with Vesta to offer fast, reliable ITIN services to your immigrant clients. Expand your service offerings and create new revenue streams.",
+  icons: {
+    icon: "/favicon.ico",
+  },
     generator: 'v0.dev'
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans min-h-screen flex flex-col`}>
-        <Header />
-        <main className="flex-grow flex flex-col">{children}</main>
-        <Footer />
-        <CookieBanner />
+      <body className={`${inter.variable} font-sans antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
+        <StickyCta />
       </body>
     </html>
   )
 }
-

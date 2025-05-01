@@ -1,216 +1,235 @@
-"use client"
-
-import { useState } from "react"
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  })
-
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      })
-    }, 1500)
-  }
-
   return (
-    <div className="min-h-screen py-12 px-4 md:px-10">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-5xl md:text-7xl font-playfair mb-8">Say Hello!</h1>
-        <p className="text-xl max-w-3xl mb-12">
-          Have questions? Want to chat? We'd love to hear from you! Our friendly team is here to help with anything you
-          need.
-        </p>
+    <div className="flex flex-col min-h-screen">
+      <Header activePage="contact" />
 
-        {/* Contact Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div>
-            <h2 className="text-3xl font-playfair mb-6">Send Us A Message</h2>
-
-            {isSubmitted ? (
-              <div className="bg-primary/10 border border-primary p-6 rounded-sm">
-                <h3 className="text-xl font-medium text-primary mb-2">Thank You!</h3>
-                <p>We got your message! We'll write back to you very soon!</p>
-                <button
-                  onClick={() => setIsSubmitted(false)}
-                  className="mt-4 text-primary hover:text-primary-dark font-medium"
-                >
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 focus:border-primary focus:outline-none"
-                    placeholder="What's your name?"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Your Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 focus:border-primary focus:outline-none"
-                    placeholder="Where can we email you back?"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                    What's This About?
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 focus:border-primary focus:outline-none"
-                    placeholder="What do you want to talk about?"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Your Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 focus:border-primary focus:outline-none"
-                    placeholder="Tell us how we can help you!"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-sm text-sm uppercase tracking-wider transition-colors flex items-center"
-                >
-                  {isSubmitting ? (
-                    <>Sending your message...</>
-                  ) : (
-                    <>
-                      Send Your Message <Send size={16} className="ml-2" />
-                    </>
-                  )}
-                </button>
-              </form>
-            )}
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="bg-gray-50 py-16 md:py-24">
+          <div className="container">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl md:text-5xl font-normal mb-6 text-left">Contact Us</h1>
+              <p className="text-lg text-gray-700 text-left">
+                Have questions about our ITIN services? We're here to help. Reach out to our team for personalized
+                assistance.
+              </p>
+            </div>
           </div>
+        </section>
 
-          {/* Contact Information */}
-          <div>
-            <h2 className="text-3xl font-playfair mb-6">How To Reach Us</h2>
+        {/* Contact Form Section */}
+        <section className="py-16 md:py-24">
+          <div className="container">
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <h2 className="text-3xl font-normal mb-6 text-left">Get in Touch</h2>
+                <p className="text-gray-600 mb-8 text-left">
+                  Fill out the form below and one of our ITIN specialists will get back to you within 24 hours.
+                </p>
 
-            <div className="space-y-8">
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                  <Mail className="text-primary" size={20} />
-                </div>
-                <div>
-                  <h3 className="font-medium mb-1">Email Us</h3>
-                  <p className="text-sm mb-1">We check our emails all day:</p>
-                  <a href="mailto:hello@growwithvesta.com" className="text-primary hover:text-primary-dark">
-                    hello@growwithvesta.com
-                  </a>
-                </div>
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="first-name">First Name</Label>
+                      <Input id="first-name" placeholder="Enter your first name" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="last-name">Last Name</Label>
+                      <Input id="last-name" placeholder="Enter your last name" />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" type="email" placeholder="Enter your email address" />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone Number</Label>
+                    <Input id="phone" placeholder="Enter your phone number" />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label>Preferred Contact Method</Label>
+                    <RadioGroup defaultValue="email" className="flex space-x-4">
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="email" id="email-contact" />
+                        <Label htmlFor="email-contact">Email</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="phone" id="phone-contact" />
+                        <Label htmlFor="phone-contact">Phone</Label>
+                      </div>
+                    </RadioGroup>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="service">Service of Interest</Label>
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="itin-application">ITIN Application</SelectItem>
+                        <SelectItem value="document-preparation">Document Preparation</SelectItem>
+                        <SelectItem value="application-tracking">Application Tracking</SelectItem>
+                        <SelectItem value="itin-renewal">ITIN Renewal</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea id="message" placeholder="Tell us how we can help you" rows={5} />
+                  </div>
+
+                  <Button type="submit" className="bg-orange-500 hover:bg-orange-600 text-white">
+                    Send Message
+                    <span className="ml-1 border-b border-white"></span>
+                  </Button>
+                </form>
               </div>
 
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                  <Phone className="text-primary" size={20} />
-                </div>
-                <div>
-                  <h3 className="font-medium mb-1">Call Us</h3>
-                  <p className="text-sm mb-1">We love to chat on the phone:</p>
-                  <a href="tel:+16469206771" className="text-primary hover:text-primary-dark">
-                    +1 (646) 920-6771
-                  </a>
-                </div>
-              </div>
+              <div>
+                <h2 className="text-3xl font-normal mb-6 text-left">Contact Information</h2>
+                <div className="space-y-8">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md">
+                      <Image src="/icons/location.png" alt="Location" width={32} height={32} />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2">Our Office</h3>
+                      <p className="text-gray-600">123 Financial District</p>
+                      <p className="text-gray-600">New York, NY 10004</p>
+                    </div>
+                  </div>
 
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                  <MapPin className="text-primary" size={20} />
-                </div>
-                <div>
-                  <h3 className="font-medium mb-1">Visit Us</h3>
-                  <p className="text-sm">
-                    Our friendly office is at:
-                    <br />
-                    150 Court Street
-                    <br />
-                    Brooklyn, NY
-                    <br />
-                    United States
-                  </p>
-                </div>
-              </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md">
+                      <Image src="/icons/circle.png" alt="Email" width={32} height={32} />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2">Email</h3>
+                      <p className="text-gray-600">info@growwithvesta.com</p>
+                      <p className="text-gray-600">support@growwithvesta.com</p>
+                    </div>
+                  </div>
 
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                  <Clock className="text-primary" size={20} />
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-md">
+                      <Image src="/icons/bell.png" alt="Phone" width={32} height={32} />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2">Phone</h3>
+                      <p className="text-gray-600">(212) 555-7890</p>
+                      <p className="text-gray-600">Mon-Fri, 9am-5pm EST</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-medium mb-1">When We're Here</h3>
-                  <p className="text-sm">Monday - Friday: 9:00 AM - 6:00 PM (New York time)</p>
+
+                <div className="mt-12">
+                  <h3 className="text-xl font-bold mb-4">Hours of Operation</h3>
+                  <ul className="space-y-2">
+                    <li className="flex justify-between">
+                      <span className="text-gray-600">Monday - Friday</span>
+                      <span>9:00 AM - 5:00 PM</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span className="text-gray-600">Saturday</span>
+                      <span>10:00 AM - 2:00 PM</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span className="text-gray-600">Sunday</span>
+                      <span>Closed</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-12">
+                  <h3 className="text-xl font-bold mb-4">Follow Us</h3>
+                  <div className="flex space-x-4">
+                    <Link
+                      href="#"
+                      className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-gray-200"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-twitter"
+                      >
+                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+                      </svg>
+                    </Link>
+                    <Link
+                      href="#"
+                      className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-gray-200"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-linkedin"
+                      >
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                        <rect width="4" height="12" x="2" y="9" />
+                        <circle cx="4" cy="4" r="2" />
+                      </svg>
+                    </Link>
+                    <Link
+                      href="#"
+                      className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full hover:bg-gray-200"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="lucide lucide-instagram"
+                      >
+                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
+
+      <Footer />
     </div>
   )
 }
-

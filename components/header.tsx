@@ -1,52 +1,93 @@
-"use client"
-
-import { useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { MobileMenu } from "./mobile-menu"
+import { LanguageSwitcher } from "./language-switcher"
 
-export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+interface HeaderProps {
+  activePage?: "home" | "services" | "about" | "faq" | "contact"
+  minimal?: boolean
+}
 
-  return (
-    <header className="py-6 px-4 md:px-10 border-b border-gray-200">
-      <div className="flex items-center justify-between">
-        <Link href="/" className="flex items-center">
-          <span className="font-serif text-3xl text-primary tracking-wide">Vesta</span>
-        </Link>
-
-        <nav className="hidden md:flex items-center space-x-8">
-          <Link href="/itin-services" className="nav-link">
-            ITIN Services
+export function Header({ activePage = "home", minimal = false }: HeaderProps) {
+  if (minimal) {
+    return (
+      <header className="py-4">
+        <div className="container flex items-center justify-between">
+          <Link href="/" className="flex items-center">
+            <Image src="/logo.svg" alt="Vesta Logo" width={180} height={60} className="h-10 w-auto" />
           </Link>
-          <Link href="/for-partners" className="nav-link">
-            For Partners
-          </Link>
-          <Link href="/about-us" className="nav-link">
-            Meet Us
-          </Link>
-        </nav>
-
-        <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
-          <div className="w-6 h-0.5 bg-black mb-1.5"></div>
-          <div className="w-6 h-0.5 bg-black"></div>
-        </button>
-      </div>
-
-      {isMenuOpen && (
-        <div className="md:hidden mt-4 py-4 border-t border-gray-200">
-          <nav className="flex flex-col space-y-4">
-            <Link href="/itin-services" className="nav-link">
-              ITIN Services
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link
+              href="/services"
+              className={`text-sm font-normal ${activePage === "services" ? "text-orange-500" : "hover:text-orange-500"} transition-colors`}
+            >
+              Services
             </Link>
-            <Link href="/for-partners" className="nav-link">
-              For Partners
+            <Link
+              href="/about"
+              className={`text-sm font-normal ${activePage === "about" ? "text-orange-500" : "hover:text-orange-500"} transition-colors`}
+            >
+              About Us
             </Link>
-            <Link href="/about-us" className="nav-link">
-              Meet Us
+            <Link
+              href="/faq"
+              className={`text-sm font-normal ${activePage === "faq" ? "text-orange-500" : "hover:text-orange-500"} transition-colors`}
+            >
+              FAQ
+            </Link>
+            <Link
+              href="/application"
+              className={`text-sm font-normal underline decoration-orange-500 decoration-2 underline-offset-4 font-medium`}
+            >
+              Get Started
             </Link>
           </nav>
+          <MobileMenu activePage={activePage} />
         </div>
-      )}
+      </header>
+    )
+  }
+
+  return (
+    <header className="border-b border-gray-200">
+      <div className="container flex items-center justify-between py-4">
+        <Link href="/" className="flex items-center">
+          <Image src="/logo.svg" alt="Vesta Logo" width={180} height={60} className="h-10 w-auto" />
+        </Link>
+        <nav className="hidden md:flex items-center space-x-8">
+          <Link
+            href="/services"
+            className={`text-sm font-normal ${activePage === "services" ? "text-orange-500" : "hover:text-orange-500"} transition-colors`}
+          >
+            Services
+          </Link>
+          <Link
+            href="/about"
+            className={`text-sm font-normal ${activePage === "about" ? "text-orange-500" : "hover:text-orange-500"} transition-colors`}
+          >
+            About Us
+          </Link>
+          <Link
+            href="/faq"
+            className={`text-sm font-normal ${activePage === "faq" ? "text-orange-500" : "hover:text-orange-500"} transition-colors`}
+          >
+            FAQ
+          </Link>
+          <Link
+            href="/contact"
+            className={`text-sm font-normal ${activePage === "contact" ? "text-orange-500" : "hover:text-orange-500"} transition-colors`}
+          >
+            Contact
+          </Link>
+          <LanguageSwitcher />
+          <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+            Get Started
+            <span className="ml-1 border-b border-white"></span>
+          </Button>
+        </nav>
+        <MobileMenu activePage={activePage} />
+      </div>
     </header>
   )
 }
-
