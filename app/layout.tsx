@@ -2,7 +2,6 @@ import type React from "react"
 import "@/app/globals.css"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
-import { StickyCta } from "@/components/sticky-cta"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,9 +9,9 @@ const inter = Inter({
 })
 
 export const metadata = {
-  title: "Vesta - ITIN Services Platform for Organizations | Beta",
+  title: "Vesta - Connecting Immigrants to Financial Freedom",
   description:
-    "Partner with Vesta to offer fast, reliable ITIN services to your immigrant clients. Expand your service offerings and create new revenue streams.",
+    "Fast, reliable, and hassle-free ITIN services to help you navigate the complexities of tax identification.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -30,7 +29,6 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
-        <StickyCta />
       </body>
     </html>
   )
