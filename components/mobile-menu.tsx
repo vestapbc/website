@@ -1,18 +1,18 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { X, Menu } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Menu } from "lucide-react"
+import { VestaIcon } from "./vesta-icon"
+import Link from "next/link"
 
-interface MobileMenuProps {
-  activePage?: "home" | "services" | "about" | "faq" | "contact"
-}
-
-export function MobileMenu({ activePage = "home" }: MobileMenuProps) {
+export function MobileMenu() {
   const [open, setOpen] = useState(false)
+
+  const handleLinkClick = () => {
+    setOpen(false)
+  }
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -22,83 +22,53 @@ export function MobileMenu({ activePage = "home" }: MobileMenuProps) {
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0">
-        <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between p-4 border-b">
-            <Link href="/" onClick={() => setOpen(false)}>
-              <Image src="/logo.svg" alt="Vesta Logo" width={120} height={40} className="h-8 w-auto" />
-            </Link>
-            <Button variant="ghost" size="icon" onClick={() => setOpen(false)}>
-              <X className="h-5 w-5" />
-              <span className="sr-only">Close</span>
-            </Button>
-          </div>
-          <nav className="flex-1 overflow-auto py-6 px-4">
-            <ul className="space-y-6">
-              <li>
-                <Link
-                  href="/"
-                  onClick={() => setOpen(false)}
-                  className={`text-lg font-normal ${
-                    activePage === "home" ? "text-orange-500" : "text-black hover:text-orange-500"
-                  } transition-colors`}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  onClick={() => setOpen(false)}
-                  className={`text-lg font-normal ${
-                    activePage === "services" ? "text-orange-500" : "text-black hover:text-orange-500"
-                  } transition-colors`}
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  onClick={() => setOpen(false)}
-                  className={`text-lg font-normal ${
-                    activePage === "about" ? "text-orange-500" : "text-black hover:text-orange-500"
-                  } transition-colors`}
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/faq"
-                  onClick={() => setOpen(false)}
-                  className={`text-lg font-normal ${
-                    activePage === "faq" ? "text-orange-500" : "text-black hover:text-orange-500"
-                  } transition-colors`}
-                >
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  onClick={() => setOpen(false)}
-                  className={`text-lg font-normal ${
-                    activePage === "contact" ? "text-orange-500" : "text-black hover:text-orange-500"
-                  } transition-colors`}
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </nav>
-          <div className="p-4 border-t">
-            <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white" onClick={() => setOpen(false)}>
-              Get Started
-              <span className="ml-1 border-b border-white"></span>
-            </Button>
-          </div>
-        </div>
+      <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white">
+        <nav className="flex flex-col gap-6 mt-10">
+          <Link
+            href="#solution"
+            onClick={handleLinkClick}
+            className="flex items-center gap-3 px-4 py-3 text-lg font-medium hover:bg-gray-50 rounded-md"
+          >
+            <VestaIcon name="search" size={24} />
+            Solution
+          </Link>
+          <Link
+            href="#partners"
+            onClick={handleLinkClick}
+            className="flex items-center gap-3 px-4 py-3 text-lg font-medium hover:bg-gray-50 rounded-md"
+          >
+            <VestaIcon name="home" size={24} />
+            For Partners
+          </Link>
+          <Link
+            href="#testimonials"
+            onClick={handleLinkClick}
+            className="flex items-center gap-3 px-4 py-3 text-lg font-medium hover:bg-gray-50 rounded-md"
+          >
+            <VestaIcon name="pin" size={24} />
+            Success Stories
+          </Link>
+          <Link
+            href="#faq"
+            onClick={handleLinkClick}
+            className="flex items-center gap-3 px-4 py-3 text-lg font-medium hover:bg-gray-50 rounded-md"
+          >
+            <VestaIcon name="file" size={24} />
+            FAQ
+          </Link>
+          <div className="border-t border-gray-200 my-4"></div>
+          <Button className="bg-orange-500 hover:bg-orange-600 text-white w-full" onClick={handleLinkClick}>
+            Partner With Us
+            <VestaIcon name="arrow" size={16} className="ml-2" />
+          </Button>
+          <Button
+            variant="outline"
+            className="border-black hover:bg-gray-100 text-black w-full"
+            onClick={handleLinkClick}
+          >
+            Schedule a Demo
+          </Button>
+        </nav>
       </SheetContent>
     </Sheet>
   )
